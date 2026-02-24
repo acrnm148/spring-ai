@@ -9,14 +9,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import springaiproject.service.AiService;
+import springaiproject.service.AiServiceByChatClient;
 
 @RestController
 @RequestMapping("/ai")
 @Slf4j
 public class AiController {
 
+//    @Autowired
+//    private AiService aiService;
+
     @Autowired
-    private AiService aiService;
+    private AiServiceByChatClient aiService;
 
     @PostMapping(
             value = "/chat",
@@ -43,4 +47,6 @@ public class AiController {
         Flux<String> answerStreamText = aiService.generateStreamText(question);
         return answerStreamText;
     }
+
+
 }
